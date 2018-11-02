@@ -1,20 +1,20 @@
 // Business Logic for customerinfo ---------
-function orders() {
+function info() {
   this.customers = [],
   this.currentId = 0
 }
 
-orders.prototype.addCustomer = function(customer) {
+info.prototype.addCustomer = function(customer) {
   customer.id = this.assignId();
   this.customers.push(customer);
 }
 
-orders.prototype.assignId = function() {
+info.prototype.assignId = function() {
   this.currentId += 1;
   return this.currentId;
 }
 
-orders.prototype.findCustomer = function(id) {
+info.prototype.findCustomer = function(id) {
   for (var i=0; i< this.customers.length; i++) {
     if (this.customers[i]) {
       if (this.customers[i].id == id) {
@@ -25,7 +25,7 @@ orders.prototype.findCustomer = function(id) {
   return false;
 }
 
-orders.prototype.deleteCustomer = function(id) {
+info.prototype.deleteCustomer = function(id) {
   for (var i=0; i< this.customers.length; i++) {
     if (this.customers[i]) {
       if (this.customers[i].id == id) {
@@ -50,7 +50,7 @@ information.prototype.fullName = function() {
 }
 
 // User Interface Logic ---------
-var customerinfo = new orders ();
+var customerinfo = new info ();
 
 function displayCustomerDetails(customerToDisplay) {
   var customerList = $("ul#customers");
@@ -84,6 +84,7 @@ function attachCustomerlist() {
   });
 };
 
+// User Interface for Customer info
 $(document).ready(function() {
   attachCustomerlist();
   $("form#new-contact").submit(function(event) {
@@ -100,4 +101,37 @@ $(document).ready(function() {
     customerinfo.addCustomer(newCustomer);
     displayCustomerDetails(customerinfo);
   });
+});
+
+
+// -----------------------------------------Pizza Order--------------
+// business logic
+
+var inputSize = {"Small":5,"Medium":10, "Large":12, "Supreme":15};
+var inputMeat = {"pork":2,"chicken":2, "beef":2};
+var inputveggies = {"Pineapple":1,"Olives":1,"Spinach":1,"Onions":1,"Peppers":.50,"Garlic":.50};
+var inputDrink = {"sprite":1,"coke":1,"Pepsi":1,"Orange":1,"Water":1,};
+
+function pizza(size, meat, veggies, sauce, drink) {
+  this.size = size;
+  this.meat = meat;
+  this.veggies = veggies;
+  this.sauce = sauce;
+  this.drink = drink;
+}
+
+pizza.prototype.calculatePrice = function (){
+  return inputSize[this.size] + inputmeat[this.meat] + inputveggies[this.veggies] + inputsauce[this.meat] + inputdrink[this.drink]
+}
+  ///user Interface
+  $("form#pizza").submit(function(event){
+   event.preventDefault()
+   alert("We only do Deliveries!")
+ var pizzaSize = $("#size").val();
+ var pizzaCmeat = $("#meat").val();
+ var pizzaveggies= $("#veggies").val();
+ var pizzaSauce = $("#sauce").val();
+  var pizzadrink = $("#drink").val();
+ var newPizza = new pizza(pizzaSize,  pizzaCmeat, pizzaveggies, pizzaSauce, pizzadrink);
+ $("#price").text(newPizza.calculatePrice() + "$");
 });
