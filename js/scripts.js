@@ -106,32 +106,3 @@ $(document).ready(function() {
 
 // -----------------------------------------Pizza Order--------------
 // business logic
-
-var inputSize = {"Small":5,"Medium":10, "Large":12, "Supreme":15};
-var inputMeat = {"pork":2,"chicken":2, "beef":2};
-var inputveggies = {"Pineapple":1,"Olives":1,"Spinach":1,"Onions":1,"Peppers":.50,"Garlic":.50};
-var inputDrink = {"sprite":1,"coke":1,"Pepsi":1,"Orange":1,"Water":1,};
-
-function pizza(size, meat, veggies, sauce, drink) {
-  this.size = size;
-  this.meat = meat;
-  this.veggies = veggies;
-  this.sauce = sauce;
-  this.drink = drink;
-}
-
-pizza.prototype.calculatePrice = function (){
-  return inputSize[this.size] + inputmeat[this.meat] + inputveggies[this.veggies] + inputsauce[this.meat] + inputdrink[this.drink]
-}
-  ///user Interface
-  $("form#pizza").submit(function(event){
-   event.preventDefault()
-   alert("We only do Deliveries!")
- var pizzaSize = $("#size").val();
- var pizzaCmeat = $("#meat").val();
- var pizzaveggies= $("#veggies").val();
- var pizzaSauce = $("#sauce").val();
-  var pizzadrink = $("#drink").val();
- var newPizza = new pizza(pizzaSize,  pizzaCmeat, pizzaveggies, pizzaSauce, pizzadrink);
- $("#price").text(newPizza.calculatePrice() + "$");
-});
