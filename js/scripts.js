@@ -38,31 +38,31 @@ orders.prototype.deleteCustomer = function(id) {
 }
 
 // Business Logic for customers ---------
-function Customerinfo(firstName, lastName, phoneNumber, address) {
+function information(firstName, lastName, phoneNumber, address) {
   this.firstName = firstName,
   this.lastName = lastName,
   this.phoneNumber = phoneNumber
   this.address = address
 }
 
-Customerinfo.prototype.fullName = function() {
+information.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
 
 // User Interface Logic ---------
-var Customerinfo = new orders ();
+var customerinfo = new orders ();
 
-function displayCustomerDetails(customerDisplay) {
+function displayCustomerDetails(customerToDisplay) {
   var customerList = $("ul#customers");
   var htmlForCustomerInfo = "";
-  customerDisplay.customers.forEach(function(customer) {
+  customerToDisplay.customers.forEach(function(customer) {
    htmlForCustomerInfo += "<li id=" + customer.id + ">" +   customer.firstName + " " + customer.lastName + "</li>";
   });
   customerList.html(htmlForCustomerInfo);
 };
 
-function showCustomer(customerID) {
-  var customer = Customerinfo.findCustomer(customerID);
+function showCustomer(customerId) {
+  var customer = customerinfo.findCustomer(customerId);
   $("#show-customer").show();
   $(".first-name").html(customer.firstName);
   $(".last-name").html(customer.lastName);
@@ -78,9 +78,9 @@ function attachCustomerlist() {
     showCustomer(this.id);
   });
   $("#buttons").on("click", ".deleteButton", function() {
-    Customerinfo.deleteCustomer(this.id);
+    customerinfo.deleteCustomer(this.id);
     $("#show-customer").hide();
-    displayCustomerDetails(Customerinfo);
+    displayCustomerDetails(customerinfo);
   });
 };
 
@@ -96,8 +96,8 @@ $(document).ready(function() {
     $("input#new-last-name").val("");
     $("input#new-phone-number").val("");
     $("input#address").val("");
-    var newCustomer = new orders(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedAddress);
-    Customerinfo.addCustomer(newCustomer);
-    displayCustomerDetails(Customerinfo);
+    var newCustomer = new information(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedAddress);
+    customerinfo.addCustomer(newCustomer);
+    displayCustomerDetails(customerinfo);
   });
 });
