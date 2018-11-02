@@ -25,3 +25,10 @@
     background-color: #4CAF50;
     color: white;
 }
+/* background color */
+#background{
+background-color: skyblue;
+}
+.img{
+white-space: nowrap;
+}
