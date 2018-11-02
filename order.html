@@ -9,61 +9,120 @@
 </head>
 <body id="background">
   <!-- Top NAvigator -->
-
   <div class="topnav">
     <a class="active" href="index.html">Home</a>
     <a href="order.html">Oder Now</a>
     <a href="contact.html">Contact</a>
   </div>
 
+  <!-- Customer Information -->
   <div class="container">
-      <h1>Make you Pizza Now</h1>
-      <div class="row">
-        <div class="col-md-6">
-          <hr>
-          <h2>Customer Info</h2>
-          <form id="new-contact">
-            <div class="form-group">
-              <label for="new-first-name">First Name</label>
-              <input type="text"  class="form-control" id="new-first-name" required>
-            </div>
-            <div class="form-group">
-              <label for="new-last-name">Last Name</label>
-              <input type="text"  class="form-control" id="new-last-name" required>
-            </div>
-            <div class="form-group">
-              <label for="new-phone-number">Phone Number</label>
-              <input type="text"  class="form-control" id="new-phone-number" required>
-            </div>
-            <div class="form-group">
-              <label for="address">Address</label>
-              <input type="text"  class="form-control" id="address" required>
-            </div>
-            <button type="submit" class="btn-primary">Add</button>
-          </form>
-
-
-          <hr>
-        </div>
-        <div class="col-md-6">
-          <div id="show-customer">
-            <h2>Customers:</h2>
-            <ul id="customers">
-            </ul>
-            <p>First Name: <span class="first-name"></span></p>
-            <p>Last Name: <span class="last-name"></span></p>
-            <p>Phone Number: <span class="phone-number"></span></p>
-            <p>Address: <span class="address"></span></p>
-
-            <div id="buttons">
-            </div
-
-            </div>
+    <h1>Make you Pizza Now</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <hr>
+        <h2>Customer Info</h2>
+        <form id="new-contact">
+          <div class="form-group">
+            <label for="new-first-name">First Name</label>
+            <input type="text"  class="form-control" id="new-first-name" required>
           </div>
+          <div class="form-group">
+            <label for="new-last-name">Last Name</label>
+            <input type="text"  class="form-control" id="new-last-name" required>
+          </div>
+          <div class="form-group">
+            <label for="new-phone-number">Phone Number</label>
+            <input type="text"  class="form-control" id="new-phone-number" required>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text"  class="form-control" id="address" required>
+          </div>
+          <button type="submit" class="btn-primary">Add</button>
+        </form>
+
+        <hr>
+      </div>
+      <div class="col-md-6">
+        <div id="show-customer">
+          <h2>Customers:</h2>
+          <ul id="customers">
+          </ul>
+          <p>First Name: <span class="first-name"></span></p>
+          <p>Last Name: <span class="last-name"></span></p>
+          <p>Phone Number: <span class="phone-number"></span></p>
+          <p>Address: <span class="address"></span></p>
+
+          <div id="buttons"></div>
+
         </div>
       </div>
     </div>
+  </div>
 
+  <!-- Customers Order -->
+  <div class="container" id="pizza">
+  <h1>Create Your Pizza</h1>
+  <form id="pizza-size">
+    <div class="form-group">
+      <label for="size">Pick a size:</label></br>
+      <input type="checkbox" name="size" value="Supreme">Supreme<br>
+      <input type="checkbox" name="size" value="Large">Large<br>
+      <input type="checkbox" name="size" value="Medium">Medium.<br>
+      <input type="checkbox" name="size" value="Small">Small<br>
+    </div>
+  </form>
 
+  <form id="pizza-meat">
+    <div class="form-group">
+      <label for="size">Pick your meat:</label></br>
+      <input type="checkbox" name="meat" value="pork">Pork<br>
+      <input type="checkbox" name="meat" value="beef">Beef<br>
+      <input type="checkbox" name="meat" value="Chicken">Chicken.<br>
+      <input type="checkbox" name="meat" value="no meat">No meat<br>
+    </div>
+  </form>
+
+  <form id="pizza-veggies">
+    <div class="form-group">
+      <label for="size">Pick your Veggies:</label></br>
+      <input type="checkbox" name="Veggies" value="Pineapple">Pineapple<br>
+      <input type="checkbox" name="Veggies" value="Peppers">Peppers<br>
+      <input type="checkbox" name="Veggies" value="Olives">Olives.<br>
+      <input type="checkbox" name="Veggies" value="Spinach">Spinach<br>
+      <input type="checkbox" name="Veggies" value="Onions">Onions<br>
+          <input type="checkbox" name=Garlic value="Garlic">Garlic<br>
+    </div>
+  </form>
+
+  <form id="pizza-sauce">
+    <div class="form-group">
+      <label for="size">Pick your Sauce:</label></br>
+      <input type="checkbox" name="Sauce" value="BBQ">BBQ<br>
+      <input type="checkbox" name="Sauce" value="Ranch">Ranch<br>
+      <input type="checkbox" name="Sauce" value="Buffalo">Buffalo.<br>
+      <input type="checkbox" name="Sauce" value="Creamy">Creamy<br>
+      <input type="checkbox" name="Sauce" value="Marinara">Marinara<br>
+    </div>
+  </form>
+
+  <form id="pizza-drink">
+    <div class="form-group">
+      <label for="size">Pick your drink:</label></br>
+      <input type="checkbox" name="drinks" value="sprite">Sprite<br>
+      <input type="checkbox" name="drinks" value="coke">Coke<br>
+      <input type="checkbox" name="drinks" value="Pepsi">Pepsi<br>
+      <input type="checkbox" name="drinks" value="Orange">Orange.<br>
+      <input type="checkbox" name="drinks" value="Water">Water<br>
+    </div>
+  </form>
+  <div class="form-group">
+    <label for="address">Special Request:</label>
+    <input type="text"  class="form-control" id="address" placeholder="Utensils, Dipping Sauce, Plates, Forks, Cups">
+  </div>
+  <button type="submit" class="btn-primary">Order</button>
+
+</div>
 </body>
 </html>
