@@ -31,4 +31,17 @@ background-color: skyblue;
 }
 .img{
 white-space: nowrap;
+ text-align: center;
+}
+.order{
+   font-size: 100px;
+   font-family: verdena;
+   font-weight: bold;
+   height: 90px;
+   margin: 5px 0;
+   text-align: center;
+   color: white;
+   line-height: 90px;
+   transition: 300ms;
+
 }
