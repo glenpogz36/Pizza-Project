@@ -43,5 +43,20 @@ white-space: nowrap;
    color: white;
    line-height: 90px;
    transition: 300ms;
-
+}
+#show-customer{
+  display: none;
+}
+#customers {
+  display:none;
+}
+ul{
+  font-size: 30px;
+}
+h1{
+  font-size: 100px;
+  color: white;
+  font-weight: bold;
+  font-family: cursive;
+  text-align: center;
 }
