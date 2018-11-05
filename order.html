@@ -43,6 +43,7 @@
         </form>
 
         <hr>
+
       </div>
       <div class="col-md-6">
         <div id="show-customer">
@@ -54,42 +55,41 @@
           <p>Phone Number: <span class="phone-number"></span></p>
           <p>Address: <span class="address"></span></p>
 
-          <div id="buttons"></div>
-
+          <div id="result"></div>
         </div>
       </div>
     </div>
   </div>
 
+
   <!-- Customers Order -->
   <div class="container">
   <h1>Create Your Pizza</h1>
   <form id="pizza">
-    <div class="form-group" id="size">
-      <label for="size">Pick a size:</label></br>
-      <input type="checkbox" name="size" value="Supreme">Supreme<br>
-      <input type="checkbox" name="size" value="Large">Large<br>
-      <input type="checkbox" name="size" value="Medium">Medium.<br>
-      <input type="checkbox" name="size" value="Small">Small<br>
-    </div>
+			<div class="form-group">
+				<h4>Choose Your Size:</h4>
+				<select class="form-control" id="size">
+		  		<option>Small</option>
+		  		<option>Medium</option>
+		  		<option>Large</option>
+		  		<option>Supreme</option>
+				</select>
+			</div>
+      <div class="form-group" id="toppings">
+        <label for="toppings">Pick your Meat:</label></br>
+        <input type="checkbox" name="toppings" value="pork">Pork<br>
+        <input type="checkbox" name="toppings" value="beef">Beef<br>
+        <input type="checkbox" name="toppings" value="Chicken">Chicken.<br>
+        <input type="checkbox" name="toppings" value="no toppings">No toppings<br>
+        <label for="toppings">Pick your Veggies:</label></br>
+        <input type="checkbox" name="toppings" value="Pineapple">Pineapple<br>
+        <input type="checkbox" name="toppings" value="Peppers">Peppers<br>
+        <input type="checkbox" name="toppings" value="Olives">Olives.<br>
+        <input type="checkbox" name="toppings" value="Spinach">Spinach<br>
+        <input type="checkbox" name="toppings" value="Onions">Onions<br>
+        <input type="checkbox" name="toppings" value="Garlic">Garlic<br>
+      </div>
 
-    <div class="form-group" id="meat">
-      <label for="meat">Pick your meat:</label></br>
-      <input type="checkbox" name="meat" value="pork">Pork<br>
-      <input type="checkbox" name="meat" value="beef">Beef<br>
-      <input type="checkbox" name="meat" value="Chicken">Chicken.<br>
-      <input type="checkbox" name="meat" value="no meat">No meat<br>
-    </div>
-
-    <div class="form-group"id="veggies">
-      <label for="veggies">Pick your Veggies:</label></br>
-      <input type="checkbox" name="Veggies" value="Pineapple">Pineapple<br>
-      <input type="checkbox" name="Veggies" value="Peppers">Peppers<br>
-      <input type="checkbox" name="Veggies" value="Olives">Olives.<br>
-      <input type="checkbox" name="Veggies" value="Spinach">Spinach<br>
-      <input type="checkbox" name="Veggies" value="Onions">Onions<br>
-      <input type="checkbox" name="Veggies" value="Garlic">Garlic<br>
-    </div>
 
     <div class="form-group"id="sauce">
       <label for="sauce">Pick your Sauce:</label></br>
@@ -112,7 +112,7 @@
   </form>
 
 
-  <h2>Your Total Will Be: <span id="price"></span></h2>
+  <h2><span id="price"></span></h2>
 
 </div>
 </body>
