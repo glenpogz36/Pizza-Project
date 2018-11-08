@@ -1,20 +1,20 @@
-// Business Logic for customerinfo ---------
-function info() {
+//Buisness Logic For New Customers--
+function NewCustomer() {
   this.customers = [],
-  this.currentId = 0
+  this.pizzaid = 0
 }
 
-info.prototype.addCustomer = function(customer) {
+NewCustomer.prototype.addCustomer = function(customer) {
   customer.id = this.assignId();
   this.customers.push(customer);
 }
 
-info.prototype.assignId = function() {
-  this.currentId += 1;
-  return this.currentId;
+NewCustomer.prototype.assignId = function() {
+  this.pizzaid += 1;
+  return this.pizzaid;
 }
 
-info.prototype.findCustomer = function(id) {
+NewCustomer.prototype.findCustomer = function(id) {
   for (var i=0; i< this.customers.length; i++) {
     if (this.customers[i]) {
       if (this.customers[i].id == id) {
@@ -25,7 +25,7 @@ info.prototype.findCustomer = function(id) {
   return false;
 }
 
-info.prototype.deleteCustomer = function(id) {
+NewCustomer.prototype.deleteCustomer = function(id) {
   for (var i=0; i< this.customers.length; i++) {
     if (this.customers[i]) {
       if (this.customers[i].id == id) {
@@ -36,13 +36,33 @@ info.prototype.deleteCustomer = function(id) {
   };
   return false;
 }
+// Buisness Logic For Pizza Price--
+NewCustomer.prototype.price = function(){
+  var meat = this.meat.length;
+  var veggies = this.veggies.length;
+  if(this.size == "Small") {
+    return 6 + (veggies*2) + (meat*3);
+  }else if(this.size == "Medium") {
+    return 8 + (veggies*2) + (meat*3);
+  }else if(this.size == "Latge") {
+    return 10 + (vegies*2) + (meat*3);
+  } else {
+    return 12 + (vegies*2) + (meat*3);
+  }
+}
 
-// Business Logic for customers ---------
-function information(firstName, lastName, phoneNumber, address) {
+// Buisness Logic For Information--
+function information(firstName, lastName, phoneNumber, address, size, meat, veggies, sauce, drinks, price) {
   this.firstName = firstName,
   this.lastName = lastName,
-  this.phoneNumber = phoneNumber
-  this.address = address
+  this.phoneNumber = phoneNumber,
+  this.address = address,
+  this.size = size,
+ this.meat = meat,
+  this.veggies = veggies,
+ this.sauce = sauce,
+  this.drinks = drinks,
+  this.price = []
 }
 
 information.prototype.fullName = function() {
@@ -50,7 +70,8 @@ information.prototype.fullName = function() {
 }
 
 // User Interface Logic ---------
-var customerinfo = new info ();
+
+var customerinfo = new NewCustomer ();
 
 function displayCustomerDetails(customerToDisplay) {
   var customerList = $("ul#customers");
@@ -61,23 +82,34 @@ function displayCustomerDetails(customerToDisplay) {
   customerList.html(htmlForCustomerInfo);
 };
 
-function showCustomer(customerId) {
-  var customer = customerinfo.findCustomer(customerId);
-  $("#show-customer").show();
-  $(".first-name").html(customer.firstName);
-  $(".last-name").html(customer.lastName);
-  $(".phone-number").html(customer.phoneNumber);
-  $(".address").html(customer.address);
-  var result = $("#result");
-  result.empty();
-  result.append("<button class='deleteButton' id=" +  + customer.id + ">Delete</button>");
+function showorder(pizzaId) {
+var information = customerinfo.findCustomer(pizzaId);
+ $("#show-customer").show();
+ $(".first-name").html(information  .firstName);
+$(".last-name").html(information  .lastName);
+$(".phone-number").html(information .phoneNumber);
+$(".address").html(information  .address);
+ $("#size").html(information.size +" " );
+  $("#meat").html(information.meat +" " );
+ $("#veggies").html(information.veggies +" " );
+ $("#sauce").html(information.sauce+ " ");
+ $("#drinks").html(information.drinks+ " ");
+  $("#price").html(information.price);
+ var deletelist = $("#deletelist");
+ deletelist.empty();
+ deletelist.append("<button class='deleteButton' id=" +  + information.id + ">Delete</button>");
 }
 
-function attachCustomerlist() {
+function attachCustomerlist(pizzaId) {
   $("ul#customers").on("click", "li", function() {
-    showCustomer(this.id);
+    showorder(this.id);
   });
-  $("#result").on("click", ".deleteButton", function() {
+  $("#deltelist").on("click", ".deleteButton", function() {
+    customerinfo.deleteCustomer(this.id);
+    $("#show-customer").hide();
+    displayCustomerDetails(customerinfo);
+  });
+  $("#checkout").on("click", ".deleteButton", function() {
     customerinfo.deleteCustomer(this.id);
     $("#show-customer").hide();
     displayCustomerDetails(customerinfo);
@@ -86,9 +118,24 @@ function attachCustomerlist() {
 
 // User Interface for Customer info
 $(document).ready(function() {
-  attachCustomerlist();
-  $("form#new-contact").submit(function(event) {
+  attachCustomerlist(NewCustomer.pizzaId);
+  $("#buttons").click(function(event) {
     event.preventDefault();
+    var size = $("input:radio[name=size]:checked").val();
+    var drinks = $("input:radio[name=size1]:checked").val();
+    var meat = [];
+    $("input:checkbox[name=meat]:checked").each(function(){
+     var meat = $(this).val();
+     size.push(meat);
+   });
+   var veggiesprice = [];
+   $("input:checkbox[name=veggies]:checked").each(function(){
+     var veggiesprice = $(this).val();
+     veggiesprice.push(veggiesprice);
+   });
+
+
+
     $("#customers").show();
     var inputtedFirstName = $("input#new-first-name").val();
     var inputtedLastName = $("input#new-last-name").val();
@@ -98,74 +145,10 @@ $(document).ready(function() {
     $("input#new-last-name").val("");
     $("input#new-phone-number").val("");
     $("input#address").val("");
-    var newCustomer = new information(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedAddress);
-    customerinfo.addCustomer(newCustomer);
-    displayCustomerDetails(customerinfo);
+    var newCustomer = new NewCustomer(firstName, lastName, phoneNumber, address, size, meat, veggies, sauce, drinks, price);
+    NewCustomer.addCustomer(newCustomer);
+    displayCustomerDetails(NewCustomer.pizzaId);
     $("#customers").show();
     alert("Ready for Delivery")
-  });
-});
-
-
-// -----------------------------------------Pizza Order--------------
-// business logic for cost
-function Pizza (size, toppings) {
-  this.size = size;
-  this.toppings = toppings;
-}
-
-var pizzaSize = [];
-var pizzaToppings = [];
-var price = 0;
-
-Pizza.prototype.sizePrice = function() {
-  if (this.size === "Small") {
-    price += 5;
-  } else if (this.size === "Medium") {
-    price += 10;
-  } else if (this.size === "Large") {
-    price += 15;
-  } else {
-    price += 20;
-  }
-  return price;
-};
-Pizza.prototype.toppingsPrice = function() {
-  if (pizzaToppings.length === 0) {
-    price += 0;
-  } else if (pizzaToppings.length === 1) {
-    price += 1.5;
-  } else if (pizzaToppings.length === 2) {
-    price += 3;
-  } else if (pizzaToppings.length === 3) {
-    price += 4.5;
-  } else {
-    price += 6;
-  }
-  return price;
-};
-
-Pizza.prototype.reset = function() {
-  price=0;
-};
-
-//User Interface for Cost---
-
-$(document).ready(function() {
-  $("form#pizza").submit(function(event){
-    event.preventDefault();
-    $("input:checkbox[name=toppings]:checked").each(function(){
-      var InputtedToppings = $(this).val();
-      pizzaToppings.push(InputtedToppings);
-    });
-    var inputtedSize = $('#size option:selected').val();
-    var userPizza = new Pizza (inputtedSize, pizzaToppings);
-    pizzaSize.push(inputtedSize);
-    userPizza.sizePrice();
-    userPizza.toppingsPrice();
-    $("#price").text("Cost:" + " " +"$" + price);
-    alert("Please Insert your Infromation below")
-
-    userPizza.reset();
   });
 });
