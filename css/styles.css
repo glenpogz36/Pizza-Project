@@ -46,6 +46,7 @@ white-space: nowrap;
 }
 #show-customer{
   display: none;
+  font-size: 20px;
 }
 #customers {
   display:none;
@@ -59,4 +60,7 @@ h1{
   font-weight: bold;
   font-family: cursive;
   text-align: center;
+}
+label {
+  font-size: 20px;
 }
